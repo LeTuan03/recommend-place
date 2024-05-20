@@ -58,7 +58,7 @@
    ```
 Mã hóa dữ liệu địa điểm là một bước quan trọng trong việc chuẩn bị dữ liệu cho mô hình học máy, đặc biệt khi xử lý dữ liệu không phải là số như các mã định danh của địa điểm. Trong đoạn mã của bạn, mã hóa được thực hiện bằng cách sử dụng `LabelEncoder` từ thư viện `scikit-learn`. Dưới đây là giải thích chi tiết lý do và cách thực hiện mã hóa dữ liệu địa điểm:
 
-### Lý do mã hóa dữ liệu địa điểm:
+ Lý do mã hóa dữ liệu địa điểm:
 
 1. Biến đổi dữ liệu không phải số thành dữ liệu số:
    - Hầu hết các mô hình học máy, đặc biệt là các mô hình dựa trên mạng nơ-ron như `TensorFlow`, yêu cầu dữ liệu đầu vào phải là số. Do đó, mã định danh của địa điểm (thường là chuỗi ký tự hoặc số không tuần tự) cần được chuyển đổi thành các số nguyên tuần tự.
@@ -69,7 +69,7 @@ Mã hóa dữ liệu địa điểm là một bước quan trọng trong việc 
 3. Giảm độ phức tạp của dữ liệu:
    - Việc sử dụng các chỉ số thay vì các mã định danh gốc giúp giảm độ phức tạp và giúp mô hình học máy xử lý dữ liệu nhanh hơn và hiệu quả hơn.
 
-### Cách thực hiện mã hóa dữ liệu địa điểm:
+ Cách thực hiện mã hóa dữ liệu địa điểm:
 
 1. Tạo đối tượng `LabelEncoder`:
    - `LabelEncoder` là công cụ từ `scikit-learn` giúp biến đổi các nhãn phân loại (categorical labels) thành các giá trị số duy nhất.
@@ -92,17 +92,17 @@ Mã hóa dữ liệu địa điểm là một bước quan trọng trong việc 
    ratings["location_index"] = location_encoder.transform(ratings["location_id"])
    ```
 
-### Ví dụ cụ thể:
+ Ví dụ cụ thể:
 Giả sử bạn có các địa điểm với mã định danh như sau:
 - `location_id`: ["locA", "locB", "locC"]
 
 Khi sử dụng `LabelEncoder`, các mã định danh này sẽ được chuyển đổi thành:
 - `location_index`: [0, 1, 2]
 
-### Kết quả:
+ Kết quả:
 Mỗi địa điểm bây giờ có một chỉ số duy nhất (0, 1, 2) thay vì mã định danh gốc ("locA", "locB", "locC"). Điều này cho phép mô hình học máy xử lý và học tập từ dữ liệu một cách hiệu quả hơn.
 
-### Tóm tắt
+ Tóm tắt
 Mã hóa dữ liệu địa điểm bằng `LabelEncoder` là một bước quan trọng để chuẩn bị dữ liệu cho mô hình học máy. Quá trình này chuyển đổi các mã định danh không phải số của địa điểm thành các số nguyên tuần tự, giúp mô hình học máy có thể xử lý dữ liệu một cách hiệu quả.
 
 7. Tạo tập dữ liệu train và test:
@@ -123,7 +123,7 @@ Tensors là cấu trúc dữ liệu đa chiều được sử dụng để biể
 
 Trong hệ thống gợi ý, đặc biệt là những hệ thống dựa trên học máy, xếp hạng (ratings) đóng một vai trò cực kỳ quan trọng. Dưới đây là lý do tại sao việc có xếp hạng (ratings) lại cần thiết và tác dụng của nó trong việc đưa ra gợi ý địa điểm cho người dùng:
 
-### Lý do cần có xếp hạng (ratings)
+ Lý do cần có xếp hạng (ratings)
 1. Thu thập thông tin về sở thích người dùng:
    - Xếp hạng cho biết mức độ ưa thích của người dùng đối với một địa điểm cụ thể. Điều này giúp hệ thống hiểu rõ hơn về sở thích cá nhân của mỗi người dùng.
 2. Tạo cơ sở dữ liệu đào tạo cho mô hình học máy:
@@ -131,7 +131,7 @@ Trong hệ thống gợi ý, đặc biệt là những hệ thống dựa trên 
 3. Xác định xu hướng và mô hình ẩn:
    - Các xếp hạng cho phép mô hình học máy phát hiện ra các xu hướng và mô hình ẩn trong dữ liệu, chẳng hạn như những người dùng nào thích các loại địa điểm tương tự nhau.
 
-### Tác dụng của xếp hạng trong việc gợi ý địa điểm
+ Tác dụng của xếp hạng trong việc gợi ý địa điểm
 1. Huấn luyện mô hình dự đoán:
    - Các mô hình học máy như mô hình gợi ý dựa trên ma trận phân rã (Matrix Factorization) hoặc mạng nơ-ron đều sử dụng xếp hạng để học cách dự đoán mức độ ưa thích của người dùng đối với các địa điểm chưa được xếp hạng.
 2. Cá nhân hóa gợi ý:
@@ -140,7 +140,7 @@ Trong hệ thống gợi ý, đặc biệt là những hệ thống dựa trên 
    - Xếp hạng không chỉ được sử dụng để huấn luyện mà còn để đánh giá mô hình. Bằng cách so sánh các xếp hạng dự đoán với xếp hạng thực tế, hệ thống có thể đánh giá hiệu suất của mô hình và cải thiện nó.
 4. Phát hiện các mô hình hành vi:
    - Các xếp hạng có thể giúp hệ thống phát hiện ra các mô hình hành vi của người dùng, ví dụ như những người dùng nào có xu hướng xếp hạng cao cho các địa điểm cụ thể vào cuối tuần.
-### Ví dụ minh họa
+ Ví dụ minh họa
 Giả sử bạn có một tập dữ liệu xếp hạng như sau:
 | user_id | location_id | rating |
 |---------|-------------|--------|
@@ -152,13 +152,13 @@ Từ tập dữ liệu này, mô hình có thể học được rằng:
 - Người dùng 1 thích địa điểm A hơn địa điểm B.
 - Người dùng 2 cũng thích địa điểm A, nhưng không thích địa điểm C.
 Dựa trên các thông tin này, nếu có một địa điểm mới D mà nhiều người dùng có sở thích giống người dùng 1 và 2 đều xếp hạng cao, hệ thống có thể gợi ý địa điểm D cho người dùng 1 và 2.
-### Kết luận
+ Kết luận
 Xếp hạng (ratings) là yếu tố cốt lõi trong các hệ thống gợi ý. Chúng cung cấp thông tin cần thiết để mô hình học máy có thể học và dự đoán sở thích của người dùng, từ đó tạo ra các gợi ý cá nhân hóa và chính xác hơn. Xếp hạng giúp hệ thống không chỉ hiểu rõ hơn về người dùng mà còn có khả năng cải thiện liên tục thông qua việc đánh giá và tinh chỉnh mô hình.
 
 Giải thích:
 Việc tạo tập dữ liệu `train` và `test` trong đoạn mã này nhằm mục đích chuẩn bị dữ liệu cho quá trình huấn luyện và đánh giá mô hình học máy. Dưới đây là giải thích chi tiết về từng phần của đoạn mã này và mục đích của chúng:
 
-### Tạo tập dữ liệu `train` và `test`:
+ Tạo tập dữ liệu `train` và `test`:
 
 1. Chuẩn bị tập dữ liệu huấn luyện (`train`):
    ```python
@@ -189,12 +189,12 @@ Việc tạo tập dữ liệu `train` và `test` trong đoạn mã này nhằm 
      - Đầu ra: Là một dataset có các phần tử tương ứng với các cặp (input, label).
    - `.batch(len(location_data))`: Gộp tất cả các phần tử trong dataset thành một batch duy nhất. Mỗi batch chứa tất cả các địa điểm trong `location_data`.
      - Việc batch dữ liệu kiểm tra thành một batch lớn giúp quá trình đánh giá mô hình nhanh hơn và đồng nhất hơn, vì tất cả các dữ liệu kiểm tra được xử lý cùng một lúc.
-### Mục đích của việc tạo tập dữ liệu `train` và `test`:
+ Mục đích của việc tạo tập dữ liệu `train` và `test`:
 1. Huấn luyện mô hình (`train`):
    - Tập dữ liệu huấn luyện được sử dụng để dạy mô hình cách dự đoán xếp hạng dựa trên các cặp `user_id` và `location_id`. Việc xáo trộn dữ liệu đảm bảo rằng mô hình học từ nhiều ví dụ khác nhau một cách ngẫu nhiên, giúp cải thiện khả năng tổng quát hóa.
 2. Đánh giá mô hình (`test`):
    - Tập dữ liệu kiểm tra được sử dụng để đánh giá hiệu suất của mô hình sau khi đã được huấn luyện. Bằng cách batch toàn bộ dữ liệu kiểm tra, chúng ta có thể đo lường độ chính xác và sai số của mô hình trên toàn bộ tập dữ liệu kiểm tra một cách hiệu quả và chính xác.
-### Tóm tắt
+ Tóm tắt
 Việc tạo tập dữ liệu `train` và `test` là một bước quan trọng trong quy trình huấn luyện mô hình học máy. Tập dữ liệu huấn luyện (`train`) giúp dạy mô hình cách dự đoán, trong khi tập dữ liệu kiểm tra (`test`) cho phép đánh giá hiệu suất của mô hình. Việc xáo trộn tập huấn luyện và batch tập kiểm tra giúp cải thiện chất lượng học của mô hình và đảm bảo đánh giá chính xác.
 
 8. Kiến trúc mô hình học máy:
@@ -212,14 +212,14 @@ Việc tạo tập dữ liệu `train` và `test` là một bước quan trọng
    ```
 
 Đoạn mã trên định nghĩa và huấn luyện một mô hình học máy sử dụng TensorFlow và Keras để dự đoán xếp hạng địa điểm dựa trên người dùng và địa điểm. Mô hình sử dụng các embeddings để ánh xạ người dùng và địa điểm vào không gian có chiều thấp hơn và sau đó tính toán điểm số bằng tích vô hướng của các embeddings này. Dưới đây là giải thích chi tiết cho từng phần của đoạn mã:
-### 1. Định nghĩa các đầu vào
+ 1. Định nghĩa các đầu vào
 ```python
 user_id = tf.keras.Input(shape=(), name="user_id", dtype=tf.int32)
 location_id = tf.keras.Input(shape=(), name="location_id", dtype=tf.int32)
 ```
 - `user_id`: Đầu vào là một ID người dùng, không có hình dạng cụ thể (`shape=()`) và kiểu dữ liệu là số nguyên (`dtype=tf.int32`).
 - `location_id`: Đầu vào là một ID địa điểm, cũng không có hình dạng cụ thể và kiểu dữ liệu là số nguyên.
-### 2. Tạo các lớp Embedding
+ 2. Tạo các lớp Embedding
 ```python
 user_embedding = tf.keras.layers.Embedding(input_dim=len(user_data), output_dim=32)(user_id)
 location_embedding = tf.keras.layers.Embedding(input_dim=len(location_data), output_dim=32)(location_id)
@@ -227,29 +227,29 @@ location_embedding = tf.keras.layers.Embedding(input_dim=len(location_data), out
 - `user_embedding`: Lớp Embedding ánh xạ `user_id` vào một không gian 32 chiều. `input_dim` là số lượng người dùng duy nhất (kích thước của `user_data`), và `output_dim` là kích thước của vector embedding (ở đây là 32).
 - `location_embedding`: Tương tự, lớp Embedding ánh xạ `location_id` vào một không gian 32 chiều. `input_dim` là số lượng địa điểm duy nhất (kích thước của `location_data`), và `output_dim` là kích thước của vector embedding.
 
-### 3. Tính tích vô hướng của các embeddings
+ 3. Tính tích vô hướng của các embeddings
 ```python
 dot_product = tf.keras.layers.Dot(axes=1)([user_embedding, location_embedding])
 ```
 - `Dot`: Lớp tính tích vô hướng của hai embeddings (`user_embedding` và `location_embedding`). `axes=1` chỉ định rằng tích vô hướng sẽ được tính dọc theo chiều đầu tiên của các vector embeddings.
-### 4. Tạo mô hình
+ 4. Tạo mô hình
 ```python
 model = tf.keras.Model(inputs=[user_id, location_id], outputs=dot_product)
 ```
 - `model`: Định nghĩa một mô hình Keras với các đầu vào là `user_id` và `location_id`, và đầu ra là `dot_product`, tức là giá trị xếp hạng dự đoán.
-### 5. Biên dịch mô hình
+ 5. Biên dịch mô hình
 ```python
 model.compile(optimizer=tf.keras.optimizers.Adagrad(0.1), loss=tf.keras.losses.MeanSquaredError(), metrics=["accuracy"])
 ```
 - `optimizer`: Sử dụng bộ tối ưu hóa Adagrad với tốc độ học là 0.1 (`tf.keras.optimizers.Adagrad(0.1)`). Adagrad là một phương pháp tối ưu hóa thích ứng, điều chỉnh tốc độ học dựa trên các gradient.
 - `loss`: Hàm mất mát Mean Squared Error (`tf.keras.losses.MeanSquaredError()`). Hàm mất mát này đo lường trung bình của bình phương sai số giữa giá trị thực và giá trị dự đoán.
 - `metrics`: Đo lường độ chính xác (`"accuracy"`). Mặc dù độ chính xác không phải là một thước đo phổ biến cho các bài toán hồi quy như dự đoán xếp hạng, nó có thể được sử dụng cho mục đích giám sát.
-### 6. Đánh giá mô hình
+ 6. Đánh giá mô hình
 ```python
 model.evaluate(test)
 ```
 - `evaluate`: Đánh giá mô hình trên tập dữ liệu kiểm tra (`test`). Điều này tính toán hàm mất mát và các metric đã được chỉ định (ở đây là độ chính xác) trên tập kiểm tra.
-### Tổng kết
+ Tổng kết
 Đoạn mã này thiết lập một mô hình học máy để dự đoán xếp hạng địa điểm dựa trên ID người dùng và ID địa điểm. Mô hình sử dụng embeddings để ánh xạ các ID vào không gian vector và sau đó tính toán điểm số dự đoán thông qua tích vô hướng của các embeddings. Mô hình sau đó được biên dịch với một bộ tối ưu hóa, hàm mất mát, và metric, và cuối cùng được đánh giá trên tập kiểm tra.
 9. Hàm gợi ý địa điểm cho một user cụ thể:
    ```python
@@ -279,7 +279,7 @@ model.evaluate(test)
    ```
 
 Đoạn mã này định nghĩa một hàm để gợi ý các địa điểm cho một người dùng cụ thể dựa trên mô hình đã được huấn luyện. Hàm này sử dụng mô hình để dự đoán xếp hạng cho tất cả các địa điểm và sau đó chọn ra các địa điểm có xếp hạng cao nhất để gợi ý. Dưới đây là giải thích chi tiết từng phần của đoạn mã:
-### 1. Định nghĩa hàm
+- Định nghĩa hàm
 ```python
 def recommend_locations_for_user(user_id, model, location_encoder, location_data, num_recommendations=10):
 ```
@@ -288,7 +288,7 @@ def recommend_locations_for_user(user_id, model, location_encoder, location_data
 - `location_encoder`: Bộ mã hóa LabelEncoder đã được huấn luyện để mã hóa các địa điểm.
 - `location_data`: Dữ liệu về các địa điểm.
 - `num_recommendations`: Số lượng địa điểm bạn muốn gợi ý (mặc định là 10).
-### 2. Tạo tập dữ liệu cho người dùng cụ thể
+ - Tạo tập dữ liệu cho người dùng cụ thể
 ```python
 locations_for_specific_user = tf.data.Dataset.from_tensor_slices({
     "user_id": np.repeat(user_id, len(location_data)),
@@ -298,7 +298,7 @@ locations_for_specific_user = tf.data.Dataset.from_tensor_slices({
 - `locations_for_specific_user`: Tạo một tập dữ liệu TensorFlow (`tf.data.Dataset`) chứa các cặp (user_id, location_id) cho người dùng cụ thể. 
   - `np.repeat(user_id, len(location_data))`: Lặp lại `user_id` cho tất cả các địa điểm.
   - `np.arange(len(location_data))`: Tạo một mảng chứa các ID địa điểm từ 0 đến `len(location_data) - 1`.
-### 3. Định hình lại các tensor
+- Định hình lại các tensor
 ```python
 locations_for_specific_user = locations_for_specific_user.map(lambda x: {
     "user_id": tf.reshape(x["user_id"], (1,)),
@@ -308,40 +308,40 @@ locations_for_specific_user = locations_for_specific_user.map(lambda x: {
 
 - `map`: Ánh xạ mỗi phần tử của tập dữ liệu sang một định dạng mới.
 - `tf.reshape(x["user_id"], (1,))` và `tf.reshape(x["location_id"], (1,))`: Định hình lại các tensor để đảm bảo rằng mỗi ID người dùng và ID địa điểm đều là một tensor có kích thước (1,).
-### 4. Dự đoán xếp hạng cho tất cả các địa điểm
+- Dự đoán xếp hạng cho tất cả các địa điểm
 ```python
 predicted_ratings = model.predict(locations_for_specific_user)
 ```
 - `model.predict`: Sử dụng mô hình để dự đoán xếp hạng cho tất cả các cặp (user_id, location_id) trong tập dữ liệu.
-### 5. Kết hợp chỉ số địa điểm với xếp hạng dự đoán
+- Kết hợp chỉ số địa điểm với xếp hạng dự đoán
 ```python
 predicted_ratings_with_indexes = list(zip(np.arange(len(location_data)), predicted_ratings))
 ```
 - `zip(np.arange(len(location_data)), predicted_ratings)`: Kết hợp các chỉ số địa điểm với các xếp hạng dự đoán tương ứng.
 - `list(zip(...))`: Chuyển đổi kết quả từ `zip` thành một danh sách.
-### 6. Sắp xếp các địa điểm theo xếp hạng dự đoán
+- Sắp xếp các địa điểm theo xếp hạng dự đoán
 ```python
 recommended_locations_indexes = sorted(predicted_ratings_with_indexes, key=lambda x: x[1], reverse=True)
 ```
 - `sorted`: Sắp xếp danh sách các cặp (index, rating) theo xếp hạng dự đoán (`x[1]`) từ cao đến thấp (`reverse=True`).
-### 7. Lấy các địa điểm gợi ý hàng đầu
+- Lấy các địa điểm gợi ý hàng đầu
 ```python
 top_recommendations_indexes = recommended_locations_indexes[:num_recommendations]
 ```
 - `top_recommendations_indexes`: Chọn ra `num_recommendations` địa điểm có xếp hạng cao nhất.
-### 8. Chuyển đổi các chỉ số địa điểm thành ID địa điểm thực tế
+- Chuyển đổi các chỉ số địa điểm thành ID địa điểm thực tế
 ```python
 top_recommendations = [(location_encoder.inverse_transform([index])[0], rating) for index, rating in
                        top_recommendations_indexes]
 ```
 - `location_encoder.inverse_transform([index])[0]`: Chuyển đổi các chỉ số địa điểm trở lại ID địa điểm ban đầu bằng cách sử dụng `inverse_transform` của `LabelEncoder`.
 - Danh sách kết quả: Tạo một danh sách các cặp (location_id, rating) cho các địa điểm được gợi ý hàng đầu.
-### 9. Trả về danh sách gợi ý
+- Trả về danh sách gợi ý
 ```python
 return top_recommendations
 ```
 - `top_recommendations`: Trả về danh sách các địa điểm được gợi ý cùng với xếp hạng dự đoán tương ứng.
-### Tổng kết
+ Tổng kết
 Hàm `recommend_locations_for_user` nhận vào ID người dùng và một mô hình học máy, sau đó sử dụng mô hình để dự đoán xếp hạng cho tất cả các địa điểm. Hàm này sắp xếp các địa điểm theo xếp hạng dự đoán và trả về danh sách các địa điểm có xếp hạng cao nhất. Điều này giúp gợi ý các địa điểm mà người dùng có thể quan tâm dựa trên các xếp hạng dự đoán từ mô hình.
 
 10. Định tuyến API để gợi ý địa điểm:
@@ -377,7 +377,7 @@ Hàm `recommend_locations_for_user` nhận vào ID người dùng và một mô 
         app.run(debug=True)
     ```
 
-### Tóm tắt
+ Tóm tắt
 Đoạn code trên thực hiện các chức năng sau:
 - Tải dữ liệu người dùng, địa điểm và đánh giá từ cơ sở dữ liệu.
 - Mã hóa các địa điểm.
