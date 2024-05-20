@@ -1,0 +1,7 @@
+pip install jupyter
+pip install tensorflow
+pip install tensorflow-recommenders
+pip install numpy
+pip install pandas
+pip install scikit-learn
+pip install Flask-Cors
